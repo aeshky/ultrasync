@@ -1,0 +1,7 @@
+Dataset,Subset,N,Accuracy,Discrepancy_Mean,Discrepancy_SD
+UXTD,new speakers,455,64.8%,97,357
+UXSSD,new sessions,126,82.5%,19,160
+UXSSD,new speaker,270,89.6%,9,135
+UPX,new sessions,306,91.2%,-3,40
+UPX,new speaker,345,94.2%,-2,123
+All,,1502,82.9%,32,223

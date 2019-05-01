@@ -1,0 +1,8 @@
+,,Words (A),,Non-words (B),,Sentence (C),,Articulatory (D),,Conversation (F),
+Dataset,Subset,N,Accuracy,N,Accuracy,N,Accuracy,N,Accuracy,N,Accuracy
+UXTD,new speakers,108,88.9%,22,86.4%,0,nan%,325,55.4%,0,nan%
+UXSSD,new sessions,105,82.9%,7,57.1%,12,100.0%,2,50.0%,0,nan%
+UXSSD,new speaker,202,91.6%,13,69.2%,46,93.5%,9,55.6%,0,nan%
+UPX,new sessions,234,89.7%,7,100.0%,65,95.4%,0,nan%,0,nan%
+UPX,new speaker,265,94.7%,9,100.0%,63,92.1%,4,100.0%,4,75.0%
+All,,914,90.7%,58,82.8%,186,94.1%,340,55.9%,4,75.0%

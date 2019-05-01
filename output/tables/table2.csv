@@ -1,0 +1,8 @@
+Utterance Type,N,Accuracy,Discrepancy_Mean,Discrepancy_SD
+Words (A),914,90.7%,1,102
+Non-words (B),58,82.8%,-2,39
+Sentence (C),186,94.1%,16,150
+Articulatory (D),340,55.9%,129,408
+Conversation (F),4,75.0%,-87,141
+All,1502,82.9%,32,223
+"A, B, C and F",1162,91.2%,3,112

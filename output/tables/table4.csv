@@ -1,0 +1,6 @@
+,Words (A),,Non-words (B),,Sentence (C),,Articulatory (D),,Conversation (F),
+Dataset,N,Accuracy,N,Accuracy,N,Accuracy,N,Accuracy,N,Accuracy
+UXTD,108,88.9%,22,86.4%,0,nan%,325,55.4%,0,nan%
+UXSSD,307,88.6%,20,65.0%,58,94.8%,11,54.5%,0,nan%
+UPX,499,92.4%,16,100.0%,128,93.8%,4,100.0%,4,75.0%
+All,914,90.7%,58,82.8%,186,94.1%,340,55.9%,4,75.0%
