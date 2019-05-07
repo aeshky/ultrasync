@@ -20,11 +20,11 @@ from synchronisation.create_experiment_data_utils import get_sync_file_names, sp
 
 def main():
 
-    PATH = "/disk/scratch_big/aeshky/SyncDataSmallSil/"
+    PATH = "/disk/scratch_big/../SyncDataSmallSil/"
 
-    output_file_names = "/disk/scratch_big/aeshky/SyncDataSmallSil/docs/df_file_names.csv"
-    output_file_info = "/disk/scratch_big/aeshky/SyncDataSmallSil/docs/df_file_info.csv"
-    output_speakers = "/disk/scratch_big/aeshky/SyncDataSmallSil/docs/df_speakers.csv"
+    output_file_names = "/disk/scratch_big/../SyncDataSmallSil/docs/df_file_names.csv"
+    output_file_info = "/disk/scratch_big/../SyncDataSmallSil/docs/df_file_info.csv"
+    output_speakers = "/disk/scratch_big/../SyncDataSmallSil/docs/df_speakers.csv"
 
     print("finding .npz files in ", PATH)
     files = get_sync_file_names(PATH)

@@ -15,7 +15,7 @@ import pandas as pd
 from numpy.random import seed as np_seed
 
 from ustools.folder_utils import get_utterance_id, get_dir_info
-from synchronisation.create_sync_samples_utils import create_samples, save_samples_to_disk
+from ultrasync.create_sync_samples_utils import create_samples, save_samples_to_disk
 
 random.seed(2018)
 np_seed(2018)
@@ -108,15 +108,12 @@ def main():
 
     ultrasuite = ["uxtd", "uxssd", "upx"]
 
-    # inputpath = sys.argv[1]
-    # outputpath = sys.argv[2]
-
     # the location of the original ultrasuite data
-    input_path = "/group/project/ultrax2020/UltraSuite/"
+    input_path = sys.argv[1]  # "/group/project/ultrax2020/UltraSuite/"
 
     # the destination: where the sync dataset will be stored.
     # This will consists of of samples, each corresponding to 200 ms of ultrasound and audio.
-    output_path = "/disk/scratch_big/aeshky/SyncDataSmallSilMfcc13"
+    output_path = sys.argv[2]  # "/disk/scratch_big/../SyncDataSmall"
 
     for dataset in ultrasuite:
 

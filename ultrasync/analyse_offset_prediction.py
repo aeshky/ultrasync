@@ -10,6 +10,7 @@ A script that analyses the offset prediction across different attributes and pro
 
 
 import os
+import sys
 import pandas as pd
 
 
@@ -202,7 +203,7 @@ def get_mean_discrepancy(difference):
 
 def main():
 
-    path = "/Users/acieleshky/Documents/synchronisation/sync_10/output/predictions/20190207-09hr30m13s/predictions"
+    path = sys.argv[1]  # "../output/20190207-09hr30m13s/predictions"
 
     df = pd.DataFrame()
 

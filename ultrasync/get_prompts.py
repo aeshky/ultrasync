@@ -25,8 +25,8 @@ def read_prompt(file):
 def main():
     experiment_id = "20190207-09hr30m13s"
     file_prefix = "offset_predictions"
-    path = "/disk/scratch_big/aeshky/experiments/sync_10/output/predictions/"
-    out_path = "/disk/scratch_big/aeshky/experiments/sync_10/docs/prompts"
+    path = "/disk/scratch_big/../experiments/sync_10/output/predictions/"
+    out_path = "/disk/scratch_big/../experiments/sync_10/docs/prompts"
 
     files = [i for i in os.listdir(path) if i.startswith(file_prefix) and experiment_id in i]
 

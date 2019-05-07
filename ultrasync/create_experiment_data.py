@@ -9,18 +9,16 @@ This script uses the information from the list of samples to create batches for 
 """
 
 import os
+import sys
 import pandas as pd
 
-from synchronisation.create_experiment_data_utils import create_data_file
+from ultrasync.create_experiment_data_utils import create_data_file
 
 
 def main():
 
-    # path = '/afs/inf.ed.ac.uk/group/project/ultrax2020/aeshky/SyncData/'
-    # dest_path = '/afs/inf.ed.ac.uk/group/project/ultrax2020/aeshky/experiments/sync_4'
-
-    path = '/disk/scratch_big/aeshky/SyncDataSmallSilMfcc13/'
-    dest_path = '/disk/scratch_big/aeshky/experiments/sync_10/'
+    path = sys.argv[1]  # '/disk/scratch_big/../SyncDataSmallSilMfcc13/'
+    dest_path = sys.argv[2]  # '/disk/scratch_big/../experiments/sync_10/'
 
     docs = os.path.join(dest_path, 'docs')
 

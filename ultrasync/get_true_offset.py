@@ -36,8 +36,8 @@ def prepare_df(params_df):
 
 def main():
 
-    docs = '/disk/scratch_big/aeshky/experiments/sync_10/docs'
-    out_docs = '/disk/scratch_big/aeshky/experiments/sync_10/docs/offset_true'
+    docs = sys.argv[1]  # '/disk/scratch_big/../experiments/sync_10/docs'
+    out_docs = sys.argv[2]  # '/disk/scratch_big/../experiments/sync_10/docs/offset_true'
     # docs = '~/Documents/params_df/'
 
     bin_size = 0.045

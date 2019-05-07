@@ -8,13 +8,14 @@ Random prediction gives us a lower bound for performance.
 """
 
 import os
+import sys
 import pandas as pd
 import numpy as np
 
 
 def main():
 
-    path = "/Users/acieleshky/Documents/synchronisation/sync_10/offset_true"
+    path = sys.argv[1]  # path to where true offsets csv files are stored "../offset_true"
 
     candidates = ['0.0', '0.18', '0.225', '0.27', '0.315',
                   '0.36', '0.405', '0.45', '0.495', '0.54', '0.585', '0.72', '0.765',

@@ -11,11 +11,12 @@ The sample names are listed and in the case of training data are randomised.
 """
 
 import os
+import sys
 import random
 import pandas as pd
 import numpy as np
 
-from synchronisation.create_experiment_data_utils import get_sync_file_names, split_name
+from ultrasync.create_experiment_data_utils import get_sync_file_names, split_name
 
 random.seed(2018)
 np.random.seed(2018)
@@ -91,8 +92,8 @@ def get_train_val_test_splits(df_info):
 
 def main():
 
-    path = '/disk/scratch_big/aeshky/SyncDataSmallSilMfcc13/'
-    dest_path = '/disk/scratch_big/aeshky/experiments/sync_10/'
+    path = sys.argv[1]  # '/disk/scratch_big/../SyncDataSmall../'
+    dest_path = sys.argv[2]  # '/disk/scratch_big/../experiments/sync_10/'
 
     files = get_sync_file_names(path)
     df_info = pd.DataFrame(data=[split_name(i) for i in files])

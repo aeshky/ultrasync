@@ -29,9 +29,9 @@ import json
 from keras.optimizers import SGD, Adam
 from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint
 
-from synchronisation.sync_data_generator import SyncDataGenerator
-from synchronisation.two_stream_model import TwoStreamNetwork, accuracy, contrastive_loss
-from synchronisation.experiment import SyncExperiment
+from ultrasync.sync_data_generator import SyncDataGenerator
+from ultrasync.two_stream_model import TwoStreamNetwork, accuracy, contrastive_loss
+from ultrasync.experiment import SyncExperiment
 
 
 def compute_metrics(generator, model, steps):
