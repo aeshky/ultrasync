@@ -203,22 +203,33 @@ def get_mean_discrepancy(difference):
 
 def main():
 
-    path = sys.argv[1]  # "../output/20190207-09hr30m13s/predictions"
-
-    df = pd.DataFrame()
+    experiment_id = "20190207-09hr30m13s"
+    path = sys.argv[1]  # path to where the predictions folder is ../ultrasync/output/
+    path_to_predictions = os.path.join(path, "predictions", "ultrasuite")
 
     evaluation_column = "detectability_correct"
 
-    file_names = [f for f in os.listdir(path) if f.startswith("offset_prediction")]
+    expected_columns = ["path", "base_file_name", "type", "dataset", "speaker", "session",
+                        "offset_true", "offset_prediction"]
 
-    for file in file_names:
+    files = [os.path.join(path_to_predictions, f)
+             for f in os.listdir(path_to_predictions) if f.startswith("offset_prediction")]
 
-        if file.endswith(".csv"):
+    df = pd.DataFrame()
 
-            temp_df = pd.read_csv(os.path.join(path, file))
-            temp_df['subset'] = get_subset_type(file)
+    for f in files:
+
+        if f.endswith(".csv"):
+
+            temp_df = pd.read_csv(f)
+
+            temp_df = temp_df[expected_columns]
+
+            temp_df['subset'] = get_subset_type(f)
 
             df = pd.concat([df, temp_df])
+
+    print(df.head())
 
     # mutiply the difference by 1000 to convert from seconds to miliseconds and make it consistent with the
     # rest of the paper
@@ -227,14 +238,14 @@ def main():
     # extract the type of utterance from the file name
     df['type'] = df['base_file_name'].apply(lambda x: list(str(x))[-1])
     df = df[df.type != "E"]  # remove utterance type "other" (E) which include coughs and swallows.
-    df = df.reset_index()
+    # df = df.reset_index()
 
     # apply the detectability threshold
-    df["detectability_correct"] = df.difference.apply(lambda x: 1 if (x < 45) and (x > -125) else 0)
+    df[evaluation_column] = df.difference.apply(lambda x: 1 if (x < 45) and (x > -125) else 0)
 
     # overall accuracy
     print("Percentage of utterances with a correct offset prediction (accuracy): " +
-          str(percentage(df.correct.mean())) + "%")
+          str(percentage(df[evaluation_column].mean())) + "%")
 
     # create the results tables
     table_1 = get_table_per_subset(df, column=evaluation_column)
@@ -247,22 +258,26 @@ def main():
     print(table_3)
     print(table_4)
 
-    out_path = os.path.join(path, "new_out")
+    out_path = os.path.join(path, "analysis")
     if not os.path.exists(out_path):
         os.makedirs(out_path)
 
-    pd.DataFrame.to_csv(table_1, os.path.join(out_path, "table1.csv"), index=False)
-    pd.DataFrame.to_csv(table_2, os.path.join(out_path, "table2.csv"), index=False)
-    pd.DataFrame.to_csv(table_3, os.path.join(out_path, "table3.csv"), index=False, header=False)
-    pd.DataFrame.to_csv(table_4, os.path.join(out_path, "table4.csv"), index=False, header=False)
+    pd.DataFrame.to_csv(table_1, os.path.join(out_path, "table1_" + experiment_id + ".csv"), index=False)
+    pd.DataFrame.to_csv(table_2, os.path.join(out_path, "table2_" + experiment_id + ".csv"), index=False)
+    pd.DataFrame.to_csv(table_3, os.path.join(out_path, "table3_" + experiment_id + ".csv"), index=False, header=False)
+    pd.DataFrame.to_csv(table_4, os.path.join(out_path, "table4_" + experiment_id + ".csv"), index=False, header=False)
 
     # these are easier to format for latex
-    pd.DataFrame.to_csv(table_1, os.path.join(out_path, "table1.txt"), index=False, sep="&")
-    pd.DataFrame.to_csv(table_2, os.path.join(out_path, "table2.txt"), index=False, sep="&")
-    pd.DataFrame.to_csv(table_3, os.path.join(out_path, "table3.txt"), index=False, header=False, sep="&")
-    pd.DataFrame.to_csv(table_4, os.path.join(out_path, "table4.txt"), index=False, header=False, sep="&")
+    pd.DataFrame.to_csv(table_1, os.path.join(out_path, "table1_" + experiment_id + ".txt"), index=False, sep="&")
+    pd.DataFrame.to_csv(table_2, os.path.join(out_path, "table2_" + experiment_id + ".txt"), index=False, sep="&")
+    pd.DataFrame.to_csv(table_3, os.path.join(out_path, "table3_" + experiment_id + ".txt"), index=False, header=False, sep="&")
+    pd.DataFrame.to_csv(table_4, os.path.join(out_path, "table4_" + experiment_id + ".txt"), index=False, header=False, sep="&")
 
     print(get_mean_discrepancy(df.difference))
+
+    # write the new df
+    pd.DataFrame.to_csv(df, os.path.join(path_to_predictions, "full_predictions_" + experiment_id + ".csv"),
+                        index=False)
 
 
 if __name__ == "__main__":

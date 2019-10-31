@@ -122,7 +122,6 @@ def is_correct(value, threshold=0.045):
 
 def main():
 
-    # old 20190123-14hr31m59s 0.6470
     # latest 20190207-09hr30m13s 0.6555
 
     # input
@@ -155,7 +154,7 @@ def main():
 
         if os.path.isfile(out_file):
 
-            print(out_file, "already existing. Skipping to next subset.")
+            print(out_file, "already exists. Skipping to next subset.")
 
         else:
 
@@ -194,7 +193,8 @@ def main():
 
             # df_results['correct'] = df_results.apply(lambda row: is_correct(row['difference']), axis=1)
 
-            df["detectability_correct"] = df.difference.apply(lambda x: 1 if (x < 0.045) and (x > -0.125) else 0)
+            df_results["detectability_correct"] = df_results.difference.apply(lambda x: 1 if (x < 0.045)
+                                                                                             and (x > -0.125) else 0)
 
             pd.DataFrame.to_csv(df_results, out_file, index=False)
             print("evaluation 1 saved.")
